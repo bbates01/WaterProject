@@ -1,0 +1,49 @@
+# =========================
+# OS / system
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# React / Node (frontend)
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.cache/
+frontend/coverage/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# =========================
+# .NET / ASP.NET Core (backend)
+# =========================
+backend/**/bin/
+backend/**/obj/
+backend/**/TestResults/
+backend/**/*.user
+backend/**/*.suo
+backend/**/*.userosscache
+backend/**/*.sln.docstates
+backend/**/*.pdb
+backend/**/*.cache
+backend/**/*.nupkg
+
+# Entity Framework generated local DB files (if used)
+backend/**/*.db
+backend/**/*.db-shm
+backend/**/*.db-wal
+
+# =========================
+# IDE / editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
