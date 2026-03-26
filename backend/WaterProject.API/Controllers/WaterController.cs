@@ -13,14 +13,23 @@ namespace WaterProject.API.Controllers
         public WaterController(WaterDbContext temp) => _context = temp;
 
         [HttpGet("AllProjects")]
-        public IActionResult GetProjects(int pageSize = 10, int pageNum = 1)
+        public IActionResult GetProjects(int pageSize = 10, int pageNum = 1, [FromQuery] List<string>? projectTypes = null)
         {
-            var something = _context.Projects
+            var query = _context.Projects.AsQueryable();
+
+            if (projectTypes != null && projectTypes.Any())
+            {
+                query = query.Where(p => projectTypes.Contains(p.ProjectType));
+            }
+            
+            var totalNumProjects = query.Count();
+            
+            var something = query
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
             
-            var totalNumProjects = _context.Projects.Count();
+
             
             var newObject = new
             {
@@ -31,14 +40,16 @@ namespace WaterProject.API.Controllers
             return Ok(newObject);
         }
 
-        [HttpGet("FunctionalProjects")]
-        public IEnumerable<Project> GetFunctionalProjects()
+        [HttpGet("GetProjectTypes")]
+        public IActionResult GetProejctTypes()
         {
-            var something = _context.Projects
-                .Where(p => p.ProjectFunctionalityStatus == "Functional")
+            var projectTypes = _context.Projects
+                .Select(p => p.ProjectType)
+                .Distinct()
                 .ToList();
             
-            return something;
+            return Ok(projectTypes);
         }
+        
     }
 }
