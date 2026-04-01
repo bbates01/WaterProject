@@ -26,6 +26,7 @@ frontend/.env.*
 # =========================
 backend/**/bin/
 backend/**/obj/
+backend/**/publish/
 backend/**/TestResults/
 backend/**/*.user
 backend/**/*.suo
@@ -34,6 +35,11 @@ backend/**/*.sln.docstates
 backend/**/*.pdb
 backend/**/*.cache
 backend/**/*.nupkg
+backend/**/*.deps.json
+backend/**/*.runtimeconfig.json
+backend/**/*.staticwebassets.endpoints.json
+backend/**/*.dll
+backend/**/*.exe
 
 # Entity Framework generated local DB files (if used)
 backend/**/*.db

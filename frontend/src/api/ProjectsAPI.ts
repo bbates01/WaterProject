@@ -5,7 +5,7 @@ interface FetchProjectsResponse {
   totalNumProjects: number;
 }
 
-const API_URL = 'https://localhost:7078/api/Water';
+const API_URL = 'https://waterproject-bates-backend-crhubsc6cmd4hrg2.mexicocentral-01.azurewebsites.net/api/Water';
 
 export const fetchProjects = async (
   pageSize: number,
@@ -53,16 +53,19 @@ export const addProject = async (newProject: Project): Promise<Project> => {
   }
 };
 
-export const updateProject = async (projectId: number, updatedProject: Project) : Promise<Project> => {
+export const updateProject = async (
+  projectId: number,
+  updatedProject: Project
+): Promise<Project> => {
   try {
     const response = await fetch(`${API_URL}/UpdateProject/${projectId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedProject),
-    }); 
-    
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedProject),
+    });
+
     return await response.json();
   } catch (error) {
     console.error('Error updating project', error);
@@ -70,13 +73,11 @@ export const updateProject = async (projectId: number, updatedProject: Project) 
   }
 };
 
-export const deleteProject = async (projectId: number) : Promise<void> => {
+export const deleteProject = async (projectId: number): Promise<void> => {
   try {
-    const response = await fetch(`${API_URL}/DeleteProject/${projectId}`,
-      {
-        method: 'DELETE'
-      }
-    );
+    const response = await fetch(`${API_URL}/DeleteProject/${projectId}`, {
+      method: 'DELETE',
+    });
 
     if (!response.ok) {
       throw new Error('Failed to delete project');
